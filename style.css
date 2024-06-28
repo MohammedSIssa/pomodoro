@@ -87,3 +87,8 @@ button{
   align-items: center;
   /* font-weight: bold; */
 }
+
+.total-focus-timer > *{
+  text-shadow: var(--bg-color) 0 -2px;
+  color: white;
+}
