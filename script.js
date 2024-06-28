@@ -16,7 +16,6 @@ let hoursFocused = 0
 
 function startTimer(){
   if(startBtn.textContent == "Start"){
-    pageIcon.setAttribute('href', 'play.png')
     startBtn.textContent = "Pause"
     intervalID = setInterval(()=>{
       let m = +document.querySelector('.minutes').textContent
@@ -26,15 +25,16 @@ function startTimer(){
         clearInterval(intervalID)
         startBreak()
         m = 5
-        pageIcon.setAttribute('href', 'pause.png')
+        pageIcon.setAttribute('href', 'Paused.png')
       }
       if((m == 0 && s == 0) && breakBtn.classList.contains('active')){
         clearInterval(intervalID)
         startPomodoro()
         m = 25
-        pageIcon.setAttribute('href', 'pause.png')
+        pageIcon.setAttribute('href', 'Paused.png')
       }
       if(pomodoroBtn.classList.contains('active')){
+        pageIcon.setAttribute('href', 'pomodoroStarted.png')
         ++secondsFocused
         if(secondsFocused >= 60){
           ++minutesFocused
@@ -48,7 +48,7 @@ function startTimer(){
         // console.log('Focus Time:', secondsFocused,'s', minutesFocused, 'm', hoursFocused, 'h')
       }
       else{
-        pageIcon.setAttribute('href', 'pause.png')
+        pageIcon.setAttribute('href', 'breakStarted.png')
       }
 
       if(s === 0){
@@ -75,7 +75,7 @@ function startTimer(){
   }
   else{
     clearInterval(intervalID)
-    pageIcon.setAttribute('href', 'pause.png')
+    pageIcon.setAttribute('href', 'Paused.png')
     startBtn.textContent = "Start"
     document.title = "Paused!" + timer.textContent
   }
@@ -85,6 +85,7 @@ startBtn.addEventListener('click', startTimer)
 pomodoroBtn.addEventListener('click', startPomodoro)
 
 function startPomodoro(){
+  pageIcon.setAttribute('href', 'Paused.png')
   clearInterval(intervalID)
   document.title = "Time to Focus!"
   if(!pomodoroBtn.classList.contains('active')){
@@ -99,6 +100,7 @@ function startPomodoro(){
 breakBtn.addEventListener('click', startBreak)
 
 function startBreak(){
+  pageIcon.setAttribute('href', 'Paused.png')
   clearInterval(intervalID)
   document.title = "Take a break"
   if(!breakBtn.classList.contains('active')){
